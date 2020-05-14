@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
     <groupId>fr.jmottez</groupId>
-	<artifactId>embedded-tomcat-not-web-xml</artifactId>
+    <artifactId>embedded-tomcat</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
@@ -10,20 +10,19 @@
         <java.version>1.8</java.version>
         <javax.servlet.version>3.0.1</javax.servlet.version>
     </properties>
-
-	<dependencies>
-
+	
+    <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
-
-	<build>
+	
+    <build>
         <plugins>
+		
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -32,7 +31,7 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
+		
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -40,15 +39,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
+		
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -57,16 +48,8 @@
                     <port>9090</port>
                     <path>/my-app</path>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
+		
         </plugins>
     </build>
-
 </project>
